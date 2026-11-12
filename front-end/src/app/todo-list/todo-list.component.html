@@ -1,0 +1,102 @@
+<main class="todo-page">
+  <div class="todo-shell">
+    <section class="todo-card" aria-labelledby="page-title">
+      <div class="list-heading">
+        <div>
+          <p class="section-label">ORGANISEZ VOTRE QUOTIDIEN</p>
+          <h1 id="page-title">Ma liste de tâches</h1>
+          <p class="page-subtitle">Toutes vos priorités, au même endroit.</p>
+        </div>
+        <span class="task-count">
+          {{ filteredTodos().length }} tâche{{ filteredTodos().length > 1 ? 's' : '' }}
+        </span>
+      </div>
+
+    @if (todoService.error(); as error) {
+      <p class="error-message" role="alert">{{ error }}</p>
+    }
+
+    <form class="new-task" (ngSubmit)="addTask()">
+      <span class="add-icon" aria-hidden="true">+</span>
+      <input
+        name="newTask"
+        [(ngModel)]="newTask"
+        required
+        placeholder="Ajouter une tâche à votre liste..."
+        aria-label="Nouvelle tâche"
+        autocomplete="off">
+      <button class="add-button" type="submit">
+        Ajouter <span aria-hidden="true">↗</span>
+      </button>
+    </form>
+
+      @if (filteredTodos(); as todos) {
+        <ul class="todo-items">
+          @for (todo of todos; track todo.id) {
+            <li
+              class="todo-item"
+              [class.completed]="todo.status === 'done'"
+              [class.editing]="editingId === todo.id"
+              [appEditMode]="todo"
+              (editModeChange)="startEdit(todo)">
+              <button
+                class="status-button"
+                type="button"
+                [attr.aria-label]="todo.status === 'done' ? 'Marquer comme à faire' : 'Marquer comme terminée'"
+                (click)="toggleTask(todo.id)">
+                <span aria-hidden="true">{{ todo.status === 'done' ? '✓' : '' }}</span>
+              </button>
+              @if (editingId !== todo.id) {
+                <span class="task-title">{{ todo.title }}</span>
+              }
+              @if (editingId === todo.id) {
+                <input
+                  class="edit-input"
+                  [(ngModel)]="editTitle"
+                  [ngModelOptions]="{ standalone: true }"
+                  (keydown.enter)="finishEdit(todo)"
+                  (keydown.escape)="cancelEdit(); $event.stopPropagation()"
+                  (click)="$event.stopPropagation()"
+                  (blur)="cancelEdit()"
+                  aria-label="Modifier la tâche"
+                  autocomplete="off"
+                  autofocus>
+              }
+              <button
+                class="delete-button"
+                type="button"
+                aria-label="Supprimer la tâche"
+                (click)="deleteTask(todo.id)">
+                <span aria-hidden="true">×</span>
+              </button>
+            </li>
+          }
+          @if (todos.length === 0) {
+            <li class="empty-state">
+              <strong>Tout est calme ici</strong>
+              <span>Ajoutez une tâche pour commencer votre liste.</span>
+            </li>
+          }
+        </ul>
+      }
+
+      <footer class="todo-footer">
+        <div class="active-summary">
+          <span class="summary-dot" aria-hidden="true"></span>
+          <strong>{{ activeCount() }}</strong>
+          <span>à terminer</span>
+        </div>
+        <nav aria-label="Filtrer les tâches">
+          @for (filter of filters; track filter.value) {
+            <a
+              [routerLink]="filter.path"
+              [class.selected]="currentFilter() === filter.value">
+              {{ filter.label }}
+            </a>
+          }
+        </nav>
+        <button type="button" class="clear-link" (click)="clearCompleted()">Effacer les tâches terminées</button>
+      </footer>
+    </section>
+  </div>
+</main>

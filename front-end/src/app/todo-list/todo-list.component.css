@@ -1,0 +1,44 @@
+:host{display:block}
+.todo-page{min-height:100vh;padding:4rem 1.25rem;background:#f4f6fa;color:#293241}
+.todo-shell{width:min(100%,52rem);margin:auto}
+.todo-card{padding:2rem;border:1px solid #e4e8ef;border-radius:1.2rem;background:#fff;box-shadow:0 1.25rem 3rem #202b3d12}
+.list-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.6rem}
+.section-label{margin:0 0 .45rem;color:#6b76a4;font-size:.65rem;font-weight:700;letter-spacing:.15em}
+h1{margin:0;color:#29354a;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:650;letter-spacing:-.045em}
+.page-subtitle{margin:.5rem 0 0;color:#8791a1;font-size:.92rem}
+.task-count{flex-shrink:0;padding:.45rem .8rem;border-radius:999px;background:#f0f2f8;color:#606b88;font-size:.78rem;font-weight:600}
+.error-message{margin:0 0 1rem;padding:.8rem 1rem;border:1px solid #f3c6c2;border-radius:.7rem;background:#fff3f1;color:#a12622}
+.new-task{display:flex;align-items:center;gap:.85rem;padding:.6rem;border:1px solid #e2e6ee;border-radius:.85rem;background:#f8f9fc;transition:border-color .18s,box-shadow .18s}
+.new-task:focus-within{border-color:#8792c0;box-shadow:0 0 0 3px #8792c020}
+.add-icon{display:grid;width:2.5rem;height:2.5rem;flex:0 0 2.5rem;place-items:center;border-radius:.65rem;background:#eceefa;color:#59669c;font-size:1.4rem}
+.new-task input{min-width:0;flex:1;border:0;background:transparent;color:inherit;font:inherit;outline:0}
+.new-task input::placeholder{color:#9aa3b1}
+.add-button{display:flex;align-items:center;gap:.65rem;padding:.75rem 1rem;border:0;border-radius:.6rem;background:#4b5989;color:#fff;font-size:.82rem;font-weight:650;cursor:pointer;transition:background .18s,transform .18s}
+.add-button:hover{transform:translateY(-1px);background:#394673}
+.add-button span{color:#d8dcf1}
+.todo-items{display:grid;gap:.55rem;margin:1.2rem 0 1.5rem;padding:0;list-style:none}
+.todo-item{display:flex;min-height:3.7rem;align-items:center;gap:.9rem;padding:.65rem .8rem;border:1px solid #edf0f4;border-radius:.75rem;background:#fff;transition:border-color .18s,background .18s}
+.todo-item:hover,.todo-item.editing{border-color:#dfe3f0;background:#f9faff}
+.status-button{display:grid;width:1.35rem;height:1.35rem;flex:0 0 1.35rem;place-items:center;border:1.5px solid #b7bfce;border-radius:50%;background:#fff;color:#fff;font-size:.75rem;cursor:pointer;transition:all .18s}
+.status-button:hover{border-color:#6572a5}
+.completed .status-button{border-color:#6976a8;background:#6976a8}
+.task-title{min-width:0;flex:1;overflow-wrap:anywhere}
+.completed .task-title{color:#98a1af;text-decoration:line-through}
+.edit-input{min-width:0;flex:1;padding:.55rem .65rem;border:1px solid #929dc4;border-radius:.5rem;background:#fff;color:inherit;font:inherit;outline:0}
+.delete-button{display:grid;width:2rem;height:2rem;place-items:center;border:0;border-radius:.55rem;background:transparent;color:#9aa3b0;font-size:1.25rem;cursor:pointer;opacity:.5;transition:all .18s}
+.todo-item:hover .delete-button,.delete-button:focus{background:#fff0ee;color:#aa5148;opacity:1}
+.empty-state{display:flex;min-height:12rem;flex-direction:column;align-items:center;justify-content:center;gap:.45rem;color:#8992a0;text-align:center}
+.empty-state strong{color:#46516b;font-size:1rem}
+.empty-state span:last-child{font-size:.85rem}
+.empty-icon{display:grid;width:2.7rem;height:2.7rem;margin-bottom:.3rem;place-items:center;border-radius:50%;background:#f0f1f8;color:#6875aa;font-size:1.3rem}
+.todo-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding:1rem 0;border-top:1px solid #edf0f4}
+.active-summary{display:flex;align-items:center;gap:.4rem;color:#778091;font-size:.78rem}
+.active-summary strong{color:#3f4b65}
+.summary-dot{width:.45rem;height:.45rem;border-radius:50%;background:#7885bb}
+.todo-footer nav{display:flex;flex-wrap:wrap;gap:.25rem;padding:.22rem;border-radius:.7rem;background:#f2f3f8}
+.todo-footer a{padding:.45rem .7rem;border-radius:.5rem;color:#718078;font-size:.75rem;text-decoration:none;transition:all .18s}
+.todo-footer a:hover,.todo-footer a.selected{background:#fff;color:#485781;box-shadow:0 1px 3px #202b3d1a}
+.clear-link{padding:.4rem 0;border:0;background:transparent;color:#829087;font-size:.75rem;cursor:pointer}
+.clear-link:hover{color:#a44940}
+@media(max-width:700px){.todo-page{padding:2rem .85rem}.todo-card{padding:1.35rem 1rem}.todo-footer{justify-content:center}.clear-link{width:100%;text-align:center}}
+@media(max-width:420px){.page-subtitle{font-size:.85rem}.new-task{gap:.55rem}.add-icon{width:2.1rem;height:2.1rem;flex-basis:2.1rem}.add-button{gap:.35rem;padding:.7rem;font-size:.75rem}.todo-footer nav{order:-1;width:100%;justify-content:center}}
